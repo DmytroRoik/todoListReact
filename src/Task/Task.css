@@ -1,0 +1,32 @@
+.Task{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  margin: 0 10px;
+}
+.Task label{
+  font-size: 25px;
+  color: gray;
+}
+.deleteTask{
+  background-color: rgb(179, 6, 6);
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color:white;
+  border-radius: 10px;
+  float: right;
+}
+.deleteTask:hover{
+  color:red;
+  background-color:rgb(126, 41, 41);
+  transform: scale(1.05);
+  font-size: 24px;
+}
+.active{
+
+}
+.completed label{
+  text-decoration:line-through;
+}
