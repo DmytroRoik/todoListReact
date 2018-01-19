@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import './App.css';
 import Task from './Task/Task.js';
+import Modal from './Modal/Modal.js';
 
 class App extends Component {
-
   state={
-    active:[
-      {id:'1', status: 'immediate', title:'create TODO1 List' },
-      {id:'2', status: 'immediate', title:'create TODO2 List' },
-      {id:'3', status: 'immediate', title:'create TasdsdODO List' },
-      {id:'7', status: 'immediate', title:'create TODO3 List' }
-    ],
-    completed:[
-      {id:'4', status: 'completed', title:'create TODO4 List' },
-      {id:'5', status: 'completed', title:'create TODO5 List' }
-    ]
+    active:[],
+    completed:[],
+    isModalShow:true,
+    total_id:0
   };
   onTaskChangeHandler=(index,task)=>{
     let curTask_temp=this.state.active[index];
@@ -31,23 +26,56 @@ class App extends Component {
     if(task.status=='completed'){
       this.state.completed.splice(index,1);
       this.setState(this.state.completed);
-      console.log(1);
     }
     else{
       this.state.active.splice(index,1);
       this.setState(this.state.active);
-      console.log(2);
     }
+    let tasks=JSON.stringify([JSON.stringify(this.state.active),JSON.stringify(this.state.completed)]);
+    localStorage.setItem('tasks',tasks);
   };
+  onClickCloseModalHandler=()=>{
+    this.setState({isModalShow:false});
+  };
+  onCreateTaskHandler=(e,app)=>{
+    e.preventDefault();
+    let title=document.getElementById('titleTask').value;
+    let status='active';
+    if(!title)return;
+
+    this.state.active.push({
+      id: ++this.state.total_id,
+      title:title,
+      status:status
+    });
+    this.setState(this.state.active);
+    let tasks=JSON.stringify([JSON.stringify(this.state.active),JSON.stringify(this.state.completed)]);
+    localStorage.setItem('tasks',tasks);
+    this.onClickCloseModalHandler();
+  }
 
   render() {
+    //TODO: Read from localStorage
     return (
       <div className="App">
         <header >
         <h1>Welcome to Your TODO List</h1>
         </header>
+        <div id="modal">
+          {this.state.isModalShow?
+          <Modal
+           title={'New Task'}
+           isModalShow={this.state.isModalShow}
+           onCreateTask={(e)=>this.onCreateTaskHandler(e,this)}
+           onClickCloseModalHandler={this.onClickCloseModalHandler}
+           >
+          </Modal>
+          :null}
+        </div>
         <div className="ActiveTask container">
-        <h4>Active Task</h4>
+        <h4>Active Task <button className="btn-floating btn-large waves-effect waves-light btnAddTask" onClick={()=>{
+          this.setState({isModalShow:true});
+        }} >+</button></h4>
           {
             this.state.active.map((task,i)=>{
               return(
@@ -63,6 +91,7 @@ class App extends Component {
               );
             })
           }
+
         </div>
         <div className="container">
           <h4>Completed Task</h4>
@@ -75,7 +104,6 @@ class App extends Component {
                  key={task.id}
                  onClickDeleteTask={this.onTaskDeleteClickHandler.bind(this,task,i)}
                  >
-
                  {task.title}
                 </Task>
               );

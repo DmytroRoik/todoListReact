@@ -24,9 +24,7 @@
   transform: scale(1.05);
   font-size: 24px;
 }
-.active{
 
-}
 .completed label{
   text-decoration:line-through;
 }

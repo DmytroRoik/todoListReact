@@ -5,3 +5,11 @@
   margin:0 auto;
   width:80%;
 }
+.btnAddTask{
+  font-size: 50px;
+  position: relative;
+
+  top: -10px;
+  right: -10%;
+  align-items: center;
+}

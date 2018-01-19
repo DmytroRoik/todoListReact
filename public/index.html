@@ -8,6 +8,8 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="http://code.jquery.com/jquery-2.1.2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <title>ToDo List</title>
   </head>
   <body>
@@ -15,6 +17,11 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
+<script>
+ $(document).ready(function() {
 
+    $('select').material_select();
+  });
+</script>
   </body>
 </html>

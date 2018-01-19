@@ -1,0 +1,47 @@
+.Modal{
+  height: 100vh;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  padding: 10%;
+  background-color: grey;
+  z-index: 100;
+}
+.Modal-content{
+  overflow: hidden;
+  background-color:white;
+  height: 50vh;
+
+  border-radius: 15px;
+}
+.Modal-head{
+  height: 80px;
+  border:1px solid transparent;
+  font-size: 30px;
+  text-transform: capitalize;
+  background-color: rgb(113, 156, 57);
+}
+
+.Modal-close{
+  width: 40px;
+  text-align: center;
+  float: right;
+  margin: 10px;
+  border-radius: 5px;
+  background-color:red;
+  border-color: red;
+}
+.Modal label{
+  font-size: 25px;
+}
+.Modal input{
+  padding-left:10px !important;
+  font-size: 20px !important;
+  height: 20px;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.Modal select option{
+  border:1px solid red !important;
+}
